@@ -9,6 +9,7 @@
     <xsl:param name="infoStandardVersion">9.0.7</xsl:param>
     <xsl:param name="fhirVersion">fhir3-0-2</xsl:param>
     <xsl:param name="targetSystem">xis</xsl:param>
+    <xsl:param name="testFormat">xml</xsl:param>
     
     <xsl:variable name="shortInfoStandard">
         <xsl:choose>
@@ -28,7 +29,7 @@
     </xsl:variable>
     <xsl:variable name="longPartId">
         <xsl:choose>
-            <xsl:when test="starts-with($partId,'ma')">MediactionAgreement (NL: MedicatieAfspraak)</xsl:when>
+            <xsl:when test="starts-with($partId,'ma')">MedicationAgreement (NL: MedicatieAfspraak)</xsl:when>
             <xsl:when test="starts-with($partId,'vv')">DispenseRequest (NL: VerstrekkingsVerzoek)</xsl:when>
             <xsl:when test="starts-with($partId,'mo')">MedicationOverview (NL: MedicatieOverzicht)</xsl:when>
         </xsl:choose>
@@ -74,6 +75,8 @@
         <xsl:value-of select="$targetSystem"/>
         <xsl:text>-</xsl:text>
         <xsl:value-of select="translate($scenarioNr,'.','-')"/>
+        <xsl:text>-</xsl:text>
+        <xsl:value-of select="$testFormat"/>
     </xsl:variable>
     <xsl:variable name="outputFileName">
         <xsl:value-of select="$testScriptId"/>
@@ -92,9 +95,6 @@
         <xsl:choose>
             <xsl:when test="$targetSystem='xis'">XIS Server</xsl:when>
             <xsl:when test="$targetSystem='phr'">PHR Client</xsl:when>
-            <xsl:otherwise>
-                <xsl:message terminate="yes">targetSystem not supported (only 'xis'/'phr' allowed)</xsl:message>
-            </xsl:otherwise>
         </xsl:choose>
     </xsl:variable>
     
@@ -106,11 +106,17 @@
         <!--description vertalen en filteren op speciale karakters-->
         <xsl:variable name="description" select="adaxml/data/*/@desc"/>
         <xsl:variable name="patientName" select="upper-case(nf:removeSpecialCharacters(adaxml/data/*/patient/naamgegevens/geslachtsnaam/achternaam/@value))"/>
+        <xsl:if test="not($targetSystem=('xis','phr'))">
+            <xsl:message terminate="yes">Unknown targetSystem. Only 'xis' and 'phr' are allowed)</xsl:message>
+        </xsl:if>
+        <xsl:if test="not($testFormat=('xml','json'))">
+            <xsl:message terminate="yes">Unknown testFormat. Only 'xml' and 'json' are allowed.</xsl:message>
+        </xsl:if>
         <xsl:result-document href="{string-join(($outputDir, $outputFileName),'/')}">
             <TestScript xmlns="http://hl7.org/fhir" xmlns:nts="http://nictiz.nl/xsl/testscript">
                 
                 <id value="{$testScriptId}"/>
-                <name value="{$infoStandard} {$infoStandardVersion} - {$longPartId} - {$targetSystemFull} - Scenario {$scenarioNr}"/>
+                <name value="{$infoStandard} {$infoStandardVersion} - {$longPartId} - {$targetSystemFull} - Scenario {$scenarioNr} - {upper-case($testFormat)} Format"/>
                 <description value="Scenario {$scenarioNr} - {$description}"/>
                 
                 <nts:patientTokenFixture href="{$shortInfoStandard}-nl-core-patient-{$patientName}-token.xml" type="{$targetSystem}"/>
