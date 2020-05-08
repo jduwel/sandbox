@@ -63,6 +63,9 @@
                     <p:with-option name="href" select="concat(string-join(($xsltDirBase,$project), '/'),'.xsl')"/>
                 </p:load>
                 <p:xslt name="project-specific">
+                    <p:input port="source">
+                        <p:pipe port="result" step="load-input"/>
+                    </p:input>
                     <p:input port="stylesheet">
                         <p:pipe port="result" step="load-project-specific-stylesheet"/>
                     </p:input>
