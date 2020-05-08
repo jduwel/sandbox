@@ -91,11 +91,6 @@
             
             <nts:patientTokenFixture href="{$shortInfoStandard}-nl-core-patient-{$patientName}-token.xml" type="{$targetSystem}"/>
             
-            <!--<xsl:comment>&lt;nts:fixture id="" href=""/></xsl:comment>
-            <xsl:comment>&lt;nts:variables href=""/></xsl:comment>
-            <xsl:comment>&lt;nts:includeDateT value=""/></xsl:comment>
-            <xsl:comment>&lt;setup>&lt;nts:actions href=""/>&lt;/setup></xsl:comment>-->
-            
             <profile id="bundle-profile">
                 <reference value="http://hl7.org/fhir/StructureDefinition/Bundle"/>
             </profile>
@@ -103,11 +98,7 @@
             <test id="{$scenarioId}">
                 <name value="Scenario {$scenarioNr}"/>
                 <description value="Scenario {$scenarioNr} - {$description}"/>
-                <!--<nts:actions href="components/phr-scenario1-searchTask.xml"/>-->
-                <!-- Example action.operation Template -->
             </test>
-            
-            <!--<xsl:comment>&lt;teardown>&lt;nts:actions href=""/>&lt;/teardown></xsl:comment>-->
         </TestScript>
     </xsl:template>
     
