@@ -28,6 +28,9 @@
     <pxf:delete fail-on-error="false">
         <p:with-option name="href" select="string-join(($outputDirBase,$project), '/')"/>
     </pxf:delete>
+    <pxf:delete fail-on-error="false">
+        <p:with-option name="href" select="string-join(($debugDirBase,$project), '/')"/>
+    </pxf:delete>
     
     <!-- TO DO: make recursive (XIS or PHR subdirs) -->
     <p:directory-list>
@@ -93,8 +96,22 @@
             </p:catch>
         </p:try>
         
+        <p:validate-with-schematron assert-valid="false" name="schematron">
+            <p:input port="schema">
+                <p:document href="../general/schematron/NictizTestScript.sch"/>
+            </p:input>
+            <p:input port="parameters">
+                <p:empty/>
+            </p:input>
+        </p:validate-with-schematron>
         <p:store indent="true" omit-xml-declaration="false">
             <p:with-option name="href" select="concat(string-join(($outputDirBase,$project,f:TestScript/f:id/@value), '/'),'.xml')"/>
+        </p:store>
+        <p:store indent="true" omit-xml-declaration="false">
+            <p:input port="source">
+                <p:pipe port="report" step="schematron"/>
+            </p:input>
+            <p:with-option name="href" select="concat(string-join(($debugDirBase,$filename),'/'),'-schematron-report.xml')"/>
         </p:store>
     </p:for-each>
     
