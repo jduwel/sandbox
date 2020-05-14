@@ -116,7 +116,7 @@
             
             <p:group>
                 <p:variable name="newFilename" select="f:TestScript/f:id/@value"/>
-                <p:validate-with-schematron assert-valid="false" name="schematron">
+                <p:validate-with-schematron name="schematron"><!-- Add assert-valid="false" to the step to prevent pipeline from failing. Uncomment p:store below to store debug reports -->
                     <p:input port="schema">
                         <p:document href="../general/schematron/NictizTestScript.sch"/>
                     </p:input>
@@ -127,12 +127,12 @@
                 <p:store indent="true" omit-xml-declaration="false">
                     <p:with-option name="href" select="concat(string-join(($outputDirBase,$project),'/'),$relDir,$newFilename,'.xml')"/>
                 </p:store>
-                <p:store indent="true" omit-xml-declaration="false">
+                <!--<p:store indent="true" omit-xml-declaration="false">
                     <p:input port="source">
                         <p:pipe port="report" step="schematron"/>
                     </p:input>
                     <p:with-option name="href" select="concat(string-join(($debugDirBase,$project),'/'),$relDir,$newFilename,'-schematron-report.xml')"/>
-                </p:store>
+                </p:store>-->
             </p:group>
             
         </p:for-each>

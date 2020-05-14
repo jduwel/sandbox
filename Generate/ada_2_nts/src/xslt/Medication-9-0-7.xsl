@@ -6,7 +6,6 @@
     version="2.0">
     
     <xsl:param name="targetSystem">xis</xsl:param>
-    <xsl:param name="testFormat">xml</xsl:param>
     
     <xsl:variable name="scenarioId" select="/adaxml/data/*/@id"/>
     <xsl:variable name="partId">
@@ -38,8 +37,7 @@
             <xsl:choose>
                 <xsl:when test="$targetSystem='xis' and $partId='mo'"><!--Also usable for PHR?-->
                     <nts:include value="xis-mo-operation-post">
-                        <nts:variable name="description" value="Test XIS server to serve {$longPartId} - {$description}"/>
-                        <nts:variable name="accept" value="{$testFormat}"/>
+                        <nts:with-parameter name="description" value="Test XIS server to serve {$longPartId} - {$description}"/>
                     </nts:include>
                     <!--<action>
                         <operation>
@@ -63,9 +61,8 @@
                 </xsl:when>
                 <xsl:when test="$targetSystem='xis' and ($partId='ma' or 'vv')"><!--Also usable for PHR?-->
                     <nts:include value="xis-ma-vv-operation-search">
-                        <nts:variable name="description" value="Test XIS server to serve {$longPartId} - {$description}"/>
-                        <nts:variable name="accept" value="{$testFormat}"/>
-                        <nts:variable name="params" value="?category=http://snomed.info/sct|{$partSnomedCategoryCode}&amp;_include=MedicationRequest:medication"/>
+                        <nts:with-parameter name="description" value="Test XIS server to serve {$longPartId} - {$description}"/>
+                        <nts:with-parameter name="params" value="?category=http://snomed.info/sct|{$partSnomedCategoryCode}&amp;_include=MedicationRequest:medication"/>
                     </nts:include>
                     <!--<action>
                         <operation>
@@ -122,8 +119,8 @@
                     </xsl:choose>
                 </xsl:variable>
                 <nts:include value="assert-returnCount" scope="project">
-                    <nts:variable name="description" value="Confirm that the returned searchset Bundle contains {$returnCount} {$partIdEN}."/>
-                    <nts:variable name="expression" value="Bundle.entry.where(resource.is({$fhirResource})).count() = {$returnCount}"/>
+                    <nts:with-parameter name="description" value="Confirm that the returned searchset Bundle contains {$returnCount} {$partIdEN}."/>
+                    <nts:with-parameter name="expression" value="Bundle.entry.where(resource.is({$fhirResource})).count() = {$returnCount}"/>
                 </nts:include>
                 <!--<action>
                     <assert>
