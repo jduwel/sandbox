@@ -7,6 +7,6 @@ before_script:
   - wget https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/9.7.0-14/Saxon-HE-9.7.0-14.jar -U "Any User Agent"
 
 script:
-  - cd Xspec-Travis/fhir_2_ada/mp/9.0.7/beschikbaarstellen_medicatiegegevens/payload/test
+  # - cd Xspec-Travis/fhir_2_ada/mp/9.0.7/beschikbaarstellen_medicatiegegevens/payload/test
   - echo "execute XSpec unit tests"
-  - ./run-xspec-tests.sh
+  - Xspec-Travis/fhir_2_ada/mp/9.0.7/beschikbaarstellen_medicatiegegevens/payload/test/run-xspec-tests.sh
