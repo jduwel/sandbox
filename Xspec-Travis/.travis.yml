@@ -1,0 +1,12 @@
+before_script:
+  # install XSpec
+  - git clone -b master https://github.com/xspec/xspec.git /tmp/xspec
+  # install Saxon
+  - mkdir -p /tmp/saxon
+  - export SAXON_CP=/tmp/xspec/saxon/saxon9he.jar
+  - wget -O ${SAXON_CP} http://central.maven.org/maven2/net/sf/saxon/Saxon-HE/9.7.0-14/Saxon-HE-9.7.0-14.jar
+
+script:
+  - cd fhir_2_ada/mp/9.0.7/beschikbaarstellen_medicatiegegevens/payload/test
+  - echo "execute XSpec unit tests"
+  - ./run-xspec-tests.sh
