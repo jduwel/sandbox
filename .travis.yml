@@ -9,6 +9,4 @@ before_script:
 script:
   - cd Xspec-Travis/fhir_2_ada/mp/9.0.7/beschikbaarstellen_medicatiegegevens/payload/test
   - echo "execute XSpec unit tests"
-  - pwd
-  - ls
   - ./run-xspec-tests.sh
