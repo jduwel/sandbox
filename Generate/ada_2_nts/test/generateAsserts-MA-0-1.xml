@@ -30,115 +30,159 @@
       <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(dosageInstruction.dose.value = 2 and dosageInstruction.timing.repeat.frequency = 1).id"/>
       <f:sourceId value="response"/>
    </f:variable>
-    
+   
+   <!-- 
+      Cannot check precise datetime - so an .exists() 
+      We know it should be a datetime, so we could at a reggex that checks it's a datetime?
+   -->
    <f:action>
       <f:assert>
          <f:description value="..."/>
-         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').extension.value.start.contains('${DATE, T, D, -20}T00:00:00+02:00')"/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = 'MBH-907-QA1-MA').extension.where(url='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse').value.start.exists()"/>
+      </f:assert>
+   </f:action>  
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = 'MBH-907-QA1-MA').extension.where(url='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse').value.start.exists()"/>
+      </f:assert>
+   </f:action>
+   
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = 'MBH-907-QA1-MA').extension.where(url='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse').value.start.toString().matches('regex')"/>
+      </f:assert>
+   </f:action> 
+   
+   <!-- 
+         Cannot check MBH identifier or identifier on specific system or value.
+         Should become an .extist()
+   -->
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = 'MBH-907-QA1-MA').extension.where(url='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment').value.system.exists()"/>
       </f:assert>
    </f:action>
    <f:action>
       <f:assert>
          <f:description value="..."/>
-         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').extension.value.end.contains('${DATE, T, D, +9}T23:59:59+02:00')"/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = 'MBH-907-QA1-MA').extension.where(url='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment').value.value.exists()"/>
+      </f:assert>
+   </f:action>
+   <f:action>     
+   <f:assert>
+         <f:description value="..."/>
+      <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = 'MBH-907-QA1-MA')).identifier.system.exists()"/>
+   </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = 'MBH-907-QA1-MA')).identifier.value.exists()"/>
+      </f:assert>
+   </f:action>
+   
+   <!-- 
+      Wordt gechecked door het profiel door een 1..1 en een fixed value 
+      Wellicht bij codes (dus niet codings en codeableConcepts) een verplichte check inbouwen?
+    -->
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = 'MBH-907-QA1-MA').intent = 'order'"/>
+      </f:assert>
+   </f:action>
+   
+   <!-- Dit wordt ook gechecked door het profiel, netzo als de category -->
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = 'MBH-907-QA1-MA').intent = 'order'"/>
+      </f:assert>
+   </f:action> 
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = 'MBH-907-QA1-MA').category.coding.code = '16076005'"/>
       </f:assert>
    </f:action>
    <f:action>
       <f:assert>
          <f:description value="..."/>
-         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').extension.value.system.contains('urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1')"/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = 'MBH-907-QA1-MA').category.coding.system = 'http://snomed.info/sct' "/>
       </f:assert>
    </f:action>
+   
+   <!-- Geen display waarden checken op inhoud. Kan ook andere taal zijn ect. Exists van gemaakt-->
    <f:action>
       <f:assert>
          <f:description value="..."/>
-         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').extension.value.value.contains('MBH_907_QA1')"/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').category.coding.display.exists()"/>
       </f:assert>
    </f:action>
-   <f:action>
-      <f:assert>
-         <f:description value="..."/>
-         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').identifier.system.contains('urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1')"/>
-      </f:assert>
-   </f:action>
-   <f:action>
-      <f:assert>
-         <f:description value="..."/>
-         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').identifier.value.contains('MBH_907_QA1_MA')"/>
-      </f:assert>
-   </f:action>
-   <f:action>
-      <f:assert>
-         <f:description value="..."/>
-         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').intent.contains('order')"/>
-      </f:assert>
-   </f:action>
-   <f:action>
-      <f:assert>
-         <f:description value="..."/>
-         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').category.coding.system.contains('http://snomed.info/sct')"/>
-      </f:assert>
-   </f:action>
-   <f:action>
-      <f:assert>
-         <f:description value="..."/>
-         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').category.coding.code.contains('16076005')"/>
-      </f:assert>
-   </f:action>
-   <f:action>
-      <f:assert>
-         <f:description value="..."/>
-         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').category.coding.display.contains('Prescription (procedure)')"/>
-      </f:assert>
-   </f:action>
+   <!-- Deze hoeft er niet perse in te zitten.. Eerder een Display, maar op zijn mist een display of een tekst. Iig één van de twee moet er zijn. Dus kan een wat geavanceerdere fhirpath worden of, dit wordt btw al gecheck in een eerdere query) -->
    <f:action>
       <f:assert>
          <f:description value="..."/>
          <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').category.text.contains('Medicatieafspraak')"/>
       </f:assert>
    </f:action>
+   
+   <!-- Kan alleen een exists worden, staat ook al wel in het profiel met een 1..1 -->
    <f:action>
       <f:assert>
          <f:description value="..."/>
-         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').medication.reference.contains('urn:oid:2.16.840.1.113883.2.4.4.10.17469')"/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').medication.reference.exists()"/>
       </f:assert>
    </f:action>
+   <!-- Twijfel overdeze, we zouden wel een contains kunnen doen? Als het een warning geeft geeft het toch iets van een check... miss verduidelijken in de desciption dat het kan zijn dat de check eventueel verouderd kan zijn oid. -->
    <f:action>
       <f:assert>
          <f:description value="..."/>
-         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').medication.display.contains('IBUPROFEN TABLET 600MG')"/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').medication.display.exists()"/>
       </f:assert>
-   </f:action>
+   </f:action>    
    <f:action>
       <f:assert>
          <f:description value="..."/>
-         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').subject.reference.contains('urn:uuid:d0c33eae-dbd8-11ea-8149-020000000000')"/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').subject.reference.exists()"/>
       </f:assert>
    </f:action>
+   <!-- Twijfel overdeze, we zouden wel een contains kunnen doen? -->
    <f:action>
       <f:assert>
          <f:description value="..."/>
          <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').subject.display.contains('S. XXX_Jankie')"/>
       </f:assert>
    </f:action>
+   
+   
+   <!-- exists + datetime check? -->
    <f:action>
       <f:assert>
          <f:description value="..."/>
          <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').authoredOn.contains('${DATE, T, D, -20}T08:00:00+02:00')"/>
       </f:assert>
    </f:action>
+   
+   <!-- exists + extensieURL toevoegen -->
    <f:action>
       <f:assert>
          <f:description value="..."/>
          <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').requester.agent.extension.value.reference.contains('urn:uuid:d0c33ed3-dbd8-11ea-8149-020000000000')"/>
       </f:assert>
    </f:action>
+   
+   <!-- exists + extensieURL toevoegen -->
    <f:action>
       <f:assert>
          <f:description value="..."/>
          <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').requester.agent.extension.value.display.contains('Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners')"/>
       </f:assert>
    </f:action>
+   
    <f:action>
       <f:assert>
          <f:description value="..."/>
@@ -151,12 +195,16 @@
          <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').requester.agent.display.contains('Peter van Pulver')"/>
       </f:assert>
    </f:action>
+   
+   <!-- Dit wordt ook heel moeilijk. Exists van maken? Wellicht splitsen in verschillende contains? -->
    <f:action>
       <f:assert>
          <f:description value="..."/>
          <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').dosageInstruction.text.contains('Vanaf &lt;T-20D{00:00:00}&gt;t/m &lt;T+9D{23:59:59}&gt;, 1 maal per dag 2 stuks, oraal')"/>
       </f:assert>
    </f:action>
+   
+   <!-- Zou hier geen contains van maken, maar gewoon = -->
    <f:action>
       <f:assert>
          <f:description value="..."/>
