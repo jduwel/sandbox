@@ -77,12 +77,28 @@
                 </p:input>
             </p:xslt>
             
+            <p:xslt name="ada2fhir">
+                <p:input port="source">
+                    <p:pipe port="result" step="load-input"/>
+                </p:input>
+                <p:input port="stylesheet">
+                    <p:document href="../../../HL7-mappings/ada_2_fhir/mp/9.0.7/beschikbaarstellen_medicatiegegevens/payload/beschikbaarstellen_medicatiegegevens_2_fhir.xsl"/>
+                </p:input>
+                <p:input port="parameters">
+                    <p:empty/>
+                </p:input>
+            </p:xslt>
+            <p:store indent="true" omit-xml-declaration="false">
+                <p:with-option name="href" select="concat(string-join(($debugDirBase,$project),'/'),$relDir,$filename)"/>
+            </p:store>
+            
             <p:try>
                 <p:group>
                     <p:documentation>Loads and executes project-specific XSLT if it exists, otherwise throws.</p:documentation>
                     <p:load name="load-project-specific-stylesheet">
                         <p:with-option name="href" select="concat(string-join(($xsltDirBase,$project), '/'),'.xsl')"/>
                     </p:load>
+                    
                     <p:xslt name="project-specific">
                         <p:input port="source">
                             <p:pipe port="result" step="load-input"/>
@@ -116,14 +132,14 @@
             
             <p:group>
                 <p:variable name="newFilename" select="f:TestScript/f:id/@value"/>
-                <p:validate-with-schematron name="schematron"><!-- Add assert-valid="false" to the step to prevent pipeline from failing. Uncomment p:store below to store debug reports -->
+                <!--<p:validate-with-schematron name="schematron"><!-\- Add assert-valid="false" to the step to prevent pipeline from failing. Uncomment p:store below to store debug reports -\->
                     <p:input port="schema">
                         <p:document href="../general/schematron/NictizTestScript.sch"/>
                     </p:input>
                     <p:input port="parameters">
                         <p:empty/>
                     </p:input>
-                </p:validate-with-schematron>
+                </p:validate-with-schematron>-->
                 <p:store indent="true" omit-xml-declaration="false">
                     <p:with-option name="href" select="concat(string-join(($outputDirBase,$project),'/'),$relDir,$newFilename,'.xml')"/>
                 </p:store>
