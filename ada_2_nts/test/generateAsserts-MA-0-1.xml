@@ -1,0 +1,1216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nts:contentAsserts xmlns:nts="http://nictiz.nl/xsl/testscript" xmlns:f="http://hl7.org/fhir">
+   <f:variable>
+      <f:name value="resource-no-1"/>
+      <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(dosageInstruction.dose.value = 2 and dosageInstruction.timing.repeat.frequency = 1).id"/>
+      <f:sourceId value="response"/>
+   </f:variable>
+   <f:variable>
+      <f:name value="resource-no-2"/>
+      <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(dosageInstruction.dose.value = 2 and dosageInstruction.timing.repeat.frequency = 1).id"/>
+      <f:sourceId value="response"/>
+   </f:variable>
+   <f:variable>
+      <f:name value="resource-no-3"/>
+      <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(dosageInstruction.dose.value = 2 and dosageInstruction.timing.repeat.frequency = 1).id"/>
+      <f:sourceId value="response"/>
+   </f:variable>
+   <f:variable>
+      <f:name value="resource-no-4"/>
+      <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(dosageInstruction.dose.value = 2 and dosageInstruction.timing.repeat.frequency = 1).id"/>
+      <f:sourceId value="response"/>
+   </f:variable>
+   <f:variable>
+      <f:name value="resource-no-5"/>
+      <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(dosageInstruction.dose.value = 2 and dosageInstruction.timing.repeat.frequency = 1).id"/>
+      <f:sourceId value="response"/>
+   </f:variable>
+   <f:variable>
+      <f:name value="resource-no-6"/>
+      <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(dosageInstruction.dose.value = 2 and dosageInstruction.timing.repeat.frequency = 1).id"/>
+      <f:sourceId value="response"/>
+   </f:variable>
+   
+   <!-- 
+      Cannot check precise datetime - so an .exists() 
+      We know it should be a datetime, so we could at a reggex that checks it's a datetime?
+   -->
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = 'MBH-907-QA1-MA').extension.where(url='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse').value.start.exists()"/>
+      </f:assert>
+   </f:action>  
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = 'MBH-907-QA1-MA').extension.where(url='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse').value.start.exists()"/>
+      </f:assert>
+   </f:action>
+   
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = 'MBH-907-QA1-MA').extension.where(url='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse').value.start.toString().matches('regex')"/>
+      </f:assert>
+   </f:action> 
+   
+   <!-- 
+         Cannot check MBH identifier or identifier on specific system or value.
+         Should become an .extist()
+   -->
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = 'MBH-907-QA1-MA').extension.where(url='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment').value.system.exists()"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = 'MBH-907-QA1-MA').extension.where(url='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment').value.value.exists()"/>
+      </f:assert>
+   </f:action>
+   <f:action>     
+   <f:assert>
+         <f:description value="..."/>
+      <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = 'MBH-907-QA1-MA')).identifier.system.exists()"/>
+   </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = 'MBH-907-QA1-MA')).identifier.value.exists()"/>
+      </f:assert>
+   </f:action>
+   
+   <!-- 
+      Wordt gechecked door het profiel door een 1..1 en een fixed value 
+      Wellicht bij codes (dus niet codings en codeableConcepts) een verplichte check inbouwen?
+    -->
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = 'MBH-907-QA1-MA').intent = 'order'"/>
+      </f:assert>
+   </f:action>
+   
+   <!-- Dit wordt ook gechecked door het profiel, netzo als de category -->
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = 'MBH-907-QA1-MA').intent = 'order'"/>
+      </f:assert>
+   </f:action> 
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = 'MBH-907-QA1-MA').category.coding.code = '16076005'"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = 'MBH-907-QA1-MA').category.coding.system = 'http://snomed.info/sct' "/>
+      </f:assert>
+   </f:action>
+   
+   <!-- Geen display waarden checken op inhoud. Kan ook andere taal zijn ect. Exists van gemaakt-->
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').category.coding.display.exists()"/>
+      </f:assert>
+   </f:action>
+   <!-- Deze hoeft er niet perse in te zitten.. Eerder een Display, maar op zijn mist een display of een tekst. Iig één van de twee moet er zijn. Dus kan een wat geavanceerdere fhirpath worden of, dit wordt btw al gecheck in een eerdere query) -->
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').category.text.contains('Medicatieafspraak')"/>
+      </f:assert>
+   </f:action>
+   
+   <!-- Kan alleen een exists worden, staat ook al wel in het profiel met een 1..1 -->
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').medication.reference.exists()"/>
+      </f:assert>
+   </f:action>
+   <!-- Twijfel overdeze, we zouden wel een contains kunnen doen? Als het een warning geeft geeft het toch iets van een check... miss verduidelijken in de desciption dat het kan zijn dat de check eventueel verouderd kan zijn oid. -->
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').medication.display.exists()"/>
+      </f:assert>
+   </f:action>    
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').subject.reference.exists()"/>
+      </f:assert>
+   </f:action>
+   <!-- Twijfel overdeze, we zouden wel een contains kunnen doen? -->
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').subject.display.contains('S. XXX_Jankie')"/>
+      </f:assert>
+   </f:action>
+   
+   
+   <!-- exists + datetime check? -->
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').authoredOn.contains('${DATE, T, D, -20}T08:00:00+02:00')"/>
+      </f:assert>
+   </f:action>
+   
+   <!-- exists + extensieURL toevoegen -->
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').requester.agent.extension.value.reference.contains('urn:uuid:d0c33ed3-dbd8-11ea-8149-020000000000')"/>
+      </f:assert>
+   </f:action>
+   
+   <!-- exists + extensieURL toevoegen -->
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').requester.agent.extension.value.display.contains('Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners')"/>
+      </f:assert>
+   </f:action>
+   
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').requester.agent.reference.contains('urn:oid:2.16.528.1.1007.3.1.1111')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').requester.agent.display.contains('Peter van Pulver')"/>
+      </f:assert>
+   </f:action>
+   
+   <!-- Dit wordt ook heel moeilijk. Exists van maken? Wellicht splitsen in verschillende contains? -->
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').dosageInstruction.text.contains('Vanaf &lt;T-20D{00:00:00}&gt;t/m &lt;T+9D{23:59:59}&gt;, 1 maal per dag 2 stuks, oraal')"/>
+      </f:assert>
+   </f:action>
+   
+   <!-- Zou hier geen contains van maken, maar gewoon = -->
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').dosageInstruction.timing.repeat.frequency.contains('1')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').dosageInstruction.timing.repeat.period.contains('1')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').dosageInstruction.timing.repeat.periodUnit.contains('d')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').dosageInstruction.route.coding.system.contains('urn:oid:2.16.840.1.113883.2.4.4.9')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').dosageInstruction.route.coding.code.contains('9')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').dosageInstruction.route.coding.display.contains('Oraal')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').dosageInstruction.dose.value.contains('2')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').dosageInstruction.dose.unit.contains('stuk')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').dosageInstruction.dose.system.contains('urn:oid:2.16.840.1.113883.2.4.4.1.900.2')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-1}').dosageInstruction.dose.code.contains('245')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').extension.value.start.contains('${DATE, T, D, -100}T00:00:00+02:00')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').extension.value.end.contains('${DATE, T, D, -72}T23:59:59+02:00')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').extension.value.system.contains('urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').extension.value.value.contains('MBH_907_QA2')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').identifier.system.contains('urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').identifier.value.contains('MBH_907_QA2_MA')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').intent.contains('order')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').category.coding.system.contains('http://snomed.info/sct')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').category.coding.code.contains('16076005')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').category.coding.display.contains('Prescription (procedure)')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').category.text.contains('Medicatieafspraak')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').medication.reference.contains('urn:oid:2.16.840.1.113883.2.4.4.10.3379')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').medication.display.contains('SENNOSIDEN A+B 2MG/ML')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').subject.reference.contains('urn:uuid:d0c33eae-dbd8-11ea-8149-020000000000')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').subject.display.contains('S. XXX_Jankie')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').authoredOn.contains('${DATE, T, D, -100}T08:04:00+02:00')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').requester.agent.extension.value.reference.contains('urn:uuid:d0c33ed3-dbd8-11ea-8149-020000000000')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').requester.agent.extension.value.display.contains('Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').requester.agent.reference.contains('urn:oid:2.16.528.1.1007.3.1.1111')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').requester.agent.display.contains('Peter van Pulver')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').dosageInstruction.text.contains('Vanaf &lt;T-100D{00:00:00}&gt; t/m T-72D{23:59:59}, 1 maal per dag 10 ml')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').dosageInstruction.timing.repeat.frequency.contains('1')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').dosageInstruction.timing.repeat.period.contains('1')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').dosageInstruction.timing.repeat.periodUnit.contains('d')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').dosageInstruction.route.coding.system.contains('urn:oid:2.16.840.1.113883.2.4.4.9')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').dosageInstruction.route.coding.code.contains('9')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').dosageInstruction.route.coding.display.contains('oraal')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').dosageInstruction.dose.value.contains('10')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').dosageInstruction.dose.unit.contains('milliliter')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').dosageInstruction.dose.system.contains('urn:oid:2.16.840.1.113883.2.4.4.1.900.2')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-2}').dosageInstruction.dose.code.contains('233')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').extension.value.start.contains('${DATE, T, D, -50}T00:00:00+02:00')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').extension.value.end.contains('${DATE, T, D, -11}T23:59:59+02:00')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').extension.value.system.contains('urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').extension.value.value.contains('MBH_907_QA3')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').identifier.system.contains('urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').identifier.value.contains('MBH_907_QA3_MA')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').intent.contains('order')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').category.coding.system.contains('http://snomed.info/sct')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').category.coding.code.contains('16076005')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').category.coding.display.contains('Prescription (procedure)')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').category.text.contains('Medicatieafspraak')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').medication.reference.contains('urn:oid:2.16.840.1.113883.2.4.4.10.88749')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').medication.display.contains('VLOEIBARE VOEDING MET O.A. VITAMINE K')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').subject.reference.contains('urn:uuid:d0c33eae-dbd8-11ea-8149-020000000000')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').subject.display.contains('S. XXX_Jankie')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').authoredOn.contains('${DATE, T, D, -50}T08:10:00+02:00')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').requester.agent.extension.value.reference.contains('urn:uuid:d0c33ed3-dbd8-11ea-8149-020000000000')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').requester.agent.extension.value.display.contains('Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').requester.agent.reference.contains('urn:oid:2.16.528.1.1007.3.1.1111')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').requester.agent.display.contains('Peter van Pulver')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').dosageInstruction.text.contains('Vanaf &lt;T-50D{00:00:00}&gt;t/m &lt;T-11D{23:59:59}&gt;, 2 maal per dag 50 ml, oraal')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').dosageInstruction.timing.repeat.frequency.contains('2')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').dosageInstruction.timing.repeat.period.contains('1')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').dosageInstruction.timing.repeat.periodUnit.contains('d')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').dosageInstruction.route.coding.system.contains('urn:oid:2.16.840.1.113883.2.4.4.9')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').dosageInstruction.route.coding.code.contains('9')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').dosageInstruction.route.coding.display.contains('oraal')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').dosageInstruction.dose.value.contains('50')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').dosageInstruction.dose.unit.contains('milliliter')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').dosageInstruction.dose.system.contains('urn:oid:2.16.840.1.113883.2.4.4.1.900.2')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-3}').dosageInstruction.dose.code.contains('233')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').extension.value.start.contains('${DATE, T, D, -10}T00:00:00+02:00')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').extension.value.end.contains('${DATE, T, D, +19}T23:59:59+02:00')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').extension.value.system.contains('urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').extension.value.value.contains('MBH_907_QA4')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').identifier.system.contains('urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').identifier.value.contains('MBH_907_QA4_MA')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').intent.contains('order')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').category.coding.system.contains('http://snomed.info/sct')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').category.coding.code.contains('16076005')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').category.coding.display.contains('Prescription (procedure)')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').category.text.contains('Medicatieafspraak')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').medication.reference.contains('urn:oid:2.16.840.1.113883.2.4.4.10.3956')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').medication.display.contains('ACETYLSALICYLZUUR TABLET 100MG')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').subject.reference.contains('urn:uuid:d0c33eae-dbd8-11ea-8149-020000000000')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').subject.display.contains('S. XXX_Jankie')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').authoredOn.contains('${DATE, T, D, -10}T08:12:00+02:00')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').requester.agent.extension.value.reference.contains('urn:uuid:d0c33ed3-dbd8-11ea-8149-020000000000')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').requester.agent.extension.value.display.contains('Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').requester.agent.reference.contains('urn:oid:2.16.528.1.1007.3.1.1111')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').requester.agent.display.contains('Peter van Pulver')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').dosageInstruction.text.contains('Vanaf &lt;T-10D{00:00:00}&gt; t/m &lt;T+19D{23:59:59}&gt;, 1 keer per dag 3 stuks, oraal')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').dosageInstruction.timing.repeat.frequency.contains('1')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').dosageInstruction.timing.repeat.period.contains('1')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').dosageInstruction.timing.repeat.periodUnit.contains('d')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').dosageInstruction.route.coding.system.contains('urn:oid:2.16.840.1.113883.2.4.4.9')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').dosageInstruction.route.coding.code.contains('9')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').dosageInstruction.route.coding.display.contains('oraal')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').dosageInstruction.dose.value.contains('3')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').dosageInstruction.dose.unit.contains('stuk')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').dosageInstruction.dose.system.contains('urn:oid:2.16.840.1.113883.2.4.4.1.900.2')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-4}').dosageInstruction.dose.code.contains('245')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').extension.value.start.contains('${DATE, T, D, -50}T00:00:00+02:00')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').extension.valueDuration.value.contains('7')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').extension.valueDuration.unit.contains('dag')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').extension.valueDuration.system.contains('http://unitsofmeasure.org')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').extension.valueDuration.code.contains('d')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').extension.value.system.contains('urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').extension.value.value.contains('MBH_907_QA5')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').identifier.system.contains('urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').identifier.value.contains('MBH_907_QA5_MA')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').intent.contains('order')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').category.coding.system.contains('http://snomed.info/sct')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').category.coding.code.contains('16076005')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').category.coding.display.contains('Prescription (procedure)')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').category.text.contains('Medicatieafspraak')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').medication.reference.contains('urn:oid:2.16.840.1.113883.2.4.4.10.7323')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').medication.display.contains('ACENOCOUMAROL TABLET 1MG')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').subject.reference.contains('urn:uuid:d0c33eae-dbd8-11ea-8149-020000000000')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').subject.display.contains('S. XXX_Jankie')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').authoredOn.contains('${DATE, T, D, -50}T08:15:00+02:00')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').requester.agent.extension.value.reference.contains('urn:uuid:d0c33ed3-dbd8-11ea-8149-020000000000')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').requester.agent.extension.value.display.contains('Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').requester.agent.reference.contains('urn:oid:2.16.528.1.1007.3.1.1111')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').requester.agent.display.contains('Peter van Pulver')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').dosageInstruction.text.contains('Vanaf &lt;T-50D{00:00:00}&gt;, gedurende 7 dagen, 1 maal per dag 1 stuk')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').dosageInstruction.timing.repeat.frequency.contains('1')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').dosageInstruction.timing.repeat.period.contains('1')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').dosageInstruction.timing.repeat.periodUnit.contains('d')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').dosageInstruction.route.coding.system.contains('urn:oid:2.16.840.1.113883.2.4.4.9')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').dosageInstruction.route.coding.code.contains('9')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').dosageInstruction.route.coding.display.contains('oraal')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').dosageInstruction.dose.value.contains('1')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').dosageInstruction.dose.unit.contains('stuk')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').dosageInstruction.dose.system.contains('urn:oid:2.16.840.1.113883.2.4.4.1.900.2')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-5}').dosageInstruction.dose.code.contains('245')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').extension.value.start.contains('${DATE, T, D, -5}T00:00:00+02:00')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').extension.value.end.contains('${DATE, T, D, +1}T23:59:59+02:00')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').extension.value.system.contains('urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').extension.value.value.contains('MBH_907_QA6')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').identifier.system.contains('urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').identifier.value.contains('MBH_907_QA6_MA')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').intent.contains('order')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').category.coding.system.contains('http://snomed.info/sct')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').category.coding.code.contains('16076005')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').category.coding.display.contains('Prescription (procedure)')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').category.text.contains('Medicatieafspraak')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').medication.reference.contains('urn:oid:2.16.840.1.113883.2.4.4.10.353')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').medication.display.contains('OXAZEPAM TABLET 10MG')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').subject.reference.contains('urn:uuid:d0c33eae-dbd8-11ea-8149-020000000000')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').subject.display.contains('S. XXX_Jankie')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').authoredOn.contains('${DATE, T, D, -5}T08:18:00+02:00')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').requester.agent.extension.value.reference.contains('urn:uuid:d0c33ed3-dbd8-11ea-8149-020000000000')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').requester.agent.extension.value.display.contains('Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').requester.agent.reference.contains('urn:oid:2.16.528.1.1007.3.1.1111')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').requester.agent.display.contains('Peter van Pulver')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').dosageInstruction.text.contains('Vanaf &lt;T-5D{00:00:00}&gt; t/m &lt;T+1D{23:59:59}&gt;, 2 maal per dag 2 stuk')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').dosageInstruction.timing.repeat.frequency.contains('2')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').dosageInstruction.timing.repeat.period.contains('1')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').dosageInstruction.timing.repeat.periodUnit.contains('d')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').dosageInstruction.route.coding.system.contains('urn:oid:2.16.840.1.113883.2.4.4.9')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').dosageInstruction.route.coding.code.contains('9')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').dosageInstruction.route.coding.display.contains('oraal')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').dosageInstruction.dose.value.contains('2')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').dosageInstruction.dose.unit.contains('stuk')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').dosageInstruction.dose.system.contains('urn:oid:2.16.840.1.113883.2.4.4.1.900.2')"/>
+      </f:assert>
+   </f:action>
+   <f:action>
+      <f:assert>
+         <f:description value="..."/>
+         <f:expression value="Bundle.entry.select(resource as MedicationRequest).where(id = '${resource-no-6}').dosageInstruction.dose.code.contains('245')"/>
+      </f:assert>
+   </f:action>
+</nts:contentAsserts>
